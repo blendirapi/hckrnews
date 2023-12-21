@@ -62,7 +62,7 @@ class HomeController extends Controller
         $response = Http::get('https://hacker-news.firebaseio.com/v0/topstories.json');
     
         $data = $response->json();
-        array_splice($data, 20);
+        array_splice($data, 15);
         
         $stories = [];
         foreach ($data as $storyId) {
@@ -77,7 +77,7 @@ class HomeController extends Controller
         $response = Http::get('https://hacker-news.firebaseio.com/v0/newstories.json');
     
         $data = $response->json();
-        array_splice($data, 20);
+        array_splice($data, 15);
         
         $stories = [];
         foreach ($data as $storyId) {
@@ -92,7 +92,7 @@ class HomeController extends Controller
         $response = Http::get('https://hacker-news.firebaseio.com/v0/beststories.json');
     
         $data = $response->json();
-        array_splice($data, 20);
+        array_splice($data, 15);
         
         $stories = [];
         foreach ($data as $storyId) {
