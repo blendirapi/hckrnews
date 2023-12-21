@@ -5,15 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
-class UserController extends Controller
-{
-    public function index(Request $request) {
-        $userId = $request->query('id');
-        $response = Http::get("https://hacker-news.firebaseio.com/v0/user/{$userId}.json");
-    
-        $user = $response->json();
+class UserController extends Controller {
+    public function index($userId) {    
+        $user = Http::get("https://hacker-news.firebaseio.com/v0/user/{$userId}.json")->json();
 
-        $items = [];
+        $stories = [];
 
         if(isset($user['submitted'])) {
             array_splice($user['submitted'], 50);
@@ -23,9 +19,9 @@ class UserController extends Controller
                 $tempItem[] = $itemResponse->json();
     
                 if ($tempItem[0]['type'] == 'story' && !isset($tempItem[0]['dead']) && !isset($tempItem[0]['deleted'])) {
-                    $items[] = $itemResponse->json();
+                    $stories[] = $itemResponse->json();
     
-                    if(count($items) == 10) {
+                    if(count($stories) == 10) {
                         break;
                     }
                 }
@@ -33,6 +29,6 @@ class UserController extends Controller
             }
         }
         
-        return view('user', ['user' => $user, 'items' => $items]);
+        return view('user', ['user' => $user, 'stories' => $stories]);
     }    
 }

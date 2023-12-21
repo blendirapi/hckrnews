@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\StoryController;
 
 
 /*
@@ -22,4 +23,6 @@ Route::get('/new', [HomeController::class, 'new'])->name('new');
 
 Route::get('/best', [HomeController::class, 'best'])->name('best');
 
-Route::get('/user', [UserController::class, 'index'])->name('user');
+Route::get('/user/{id}', [UserController::class, 'index'])->name('user');
+
+Route::get('/story/{id}', [StoryController::class, 'index'])->name('story');
