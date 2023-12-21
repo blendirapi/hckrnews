@@ -11,23 +11,24 @@ class UserController extends Controller
         $userId = $request->query('id');
         $response = Http::get("https://hacker-news.firebaseio.com/v0/user/{$userId}.json");
     
-        $data = $response->json();
-
-        array_splice($data['submitted'], 10);
+        $user = $response->json();
 
         $items = [];
-        foreach ($data['submitted'] as $item) {
+        foreach ($user['submitted'] as $item) {
             $itemResponse = Http::get("https://hacker-news.firebaseio.com/v0/item/{$item}.json");
+            $tempItem[] = $itemResponse->json();
 
-            //if($itemResponse['submitted'] == 0)
-            $items[] = $itemResponse->json();
+            if ($tempItem[0]['type'] == 'story' && !isset($tempItem[0]['dead'])) {
+                $items[] = $itemResponse->json();
+
+                if(count($items) == 10) {
+                    break;
+                }
+            }
+
+            unset($tempItem);
         }
-
-        dd($items);
         
-        return view('user', $data);
-
-        //submitted
-
+        return view('user', ['user' => $user, 'items' => $items]);
     }    
 }

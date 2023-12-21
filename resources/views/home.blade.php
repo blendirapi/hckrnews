@@ -10,7 +10,7 @@
         <title>HCKRNEWS</title>
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
-    <body class="bg-gray-100">
+    <body class="bg-gray-50">
         <div class="mx-96 mt-5">
             <div class="flex items-center justify-evenly mb-4 text-lg">
                 <span class="inline-flex items-center mx-1">
