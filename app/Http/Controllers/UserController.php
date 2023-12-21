@@ -22,7 +22,7 @@ class UserController extends Controller
                 $itemResponse = Http::get("https://hacker-news.firebaseio.com/v0/item/{$item}.json");
                 $tempItem[] = $itemResponse->json();
     
-                if ($tempItem[0]['type'] == 'story' && !isset($tempItem[0]['dead'])) {
+                if ($tempItem[0]['type'] == 'story' && !isset($tempItem[0]['dead']) && !isset($tempItem[0]['deleted'])) {
                     $items[] = $itemResponse->json();
     
                     if(count($items) == 10) {
