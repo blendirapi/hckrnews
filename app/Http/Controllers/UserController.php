@@ -11,7 +11,7 @@ class UserController extends Controller {
 
         $stories = [];
 
-        if(isset($user['submitted'])) {
+        /* if(isset($user['submitted'])) {
             array_splice($user['submitted'], 50);
 
             foreach ($user['submitted'] as $item) {
@@ -27,8 +27,8 @@ class UserController extends Controller {
                 }
                 unset($tempItem);
             }
-        }
+        } */
         
-        return view('user', ['user' => $user, 'stories' => $stories]);
+        return view('user', ['user' => $user, 'userItems' => $user['submitted']]);
     }    
 }
