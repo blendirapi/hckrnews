@@ -1,7 +1,3 @@
-@php
-    use App\Http\Controllers\HomeController;
-@endphp
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -25,7 +21,7 @@
                             var storyUrl = storyUrl.hostname;
                         }
                         var newStoryListItem = document.createElement('li');
-                        newStoryListItem.className = 'border-b border-zinc-300 hover:border-zinc-500 p-3';
+                        newStoryListItem.className = 'rounded-lg hover:bg-neutral-200 hover:scale-105 hover:shadow-md transform-gpu duration-150 p-3';
                         
                         newStoryListItem.innerHTML = `
                             <div class="mb-1">
@@ -106,7 +102,8 @@
                 }
         </script>
     </head>
-    <body>
+    <body class="bg-neutral-100">
+        @include('layouts.header')
         <div class="mx-96 mt-5">
             <div class="flex items-center justify-evenly mb-4 text-lg">
 
@@ -142,5 +139,6 @@
                 
             </ol>
         </div>
+        @include('layouts.footer')
     </body>
 </html>
