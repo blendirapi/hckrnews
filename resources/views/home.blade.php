@@ -40,7 +40,7 @@
                                                 <a href="${storyData.url}" target="_blank">(${storyUrl})</a>
                                             </span>`;
                                     } else {
-                                        return `<a class="text-lg" href="google.com">${storyData.title}</a>`;
+                                        return `<a class="text-lg" href="story/${storyData.id}">${storyData.title}</a>`;
                                     }
                                 })()}
                             </div>

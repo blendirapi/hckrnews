@@ -20,7 +20,8 @@
                 fetch('https://hacker-news.firebaseio.com/v0/item/' + id +'.json')
                     .then(response => response.json())
                     .then(storyData => {
-                        if(storyData.type == 'story' && !storyData.dead && !storyData.deleted) {
+                        if(storyData.type == 'story' && !storyData.dead && !storyData.deleted && Object.keys(storyData).length > 2) {
+                            console.log(storyData);
                             if(storyData.url){
                                 var storyUrl = new URL(storyData.url);
                                 var storyUrl = storyUrl.hostname;
@@ -41,7 +42,7 @@
                                                     <a href="${storyData.url}" target="_blank">(${storyUrl})</a>
                                                 </span>`;
                                         } else {
-                                            return `<a class="text-lg" href="google.com">${storyData.title}</a>`;
+                                            return `<a class="text-lg" href="story/${storyData.id}">${storyData.title}</a>`;
                                         }
                                     })()}
                                 </div>
