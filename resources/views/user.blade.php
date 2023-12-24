@@ -10,18 +10,17 @@
             const storiesOlElement = document.getElementById("storiesList");
 
             const userItems = @json($userItems);
-            userItems.forEach(getStories);
-
-            function getStories(id) {
+            
+            userItems.forEach(id => {
                 fetch('https://hacker-news.firebaseio.com/v0/item/' + id +'.json')
                     .then(response => response.json())
                     .then(storyData => {
                         if(storyData.type == 'story' && !storyData.dead && !storyData.deleted && Object.keys(storyData).length > 2) {
-                            console.log(storyData);
                             if(storyData.url){
                                 var storyUrl = new URL(storyData.url);
                                 var storyUrl = storyUrl.hostname;
                             }
+
                             var newStoryListItem = document.createElement('li');
                             newStoryListItem.className = 'rounded-lg hover:bg-neutral-200 hover:scale-105 hover:shadow-md transform-gpu duration-150 p-3';
 
@@ -83,26 +82,26 @@
                         }
                     })
                     .catch(error => console.error('Error fetching data:', error));
-                }
+            });
 
-                function getFormattedTime(seconds) {
-                    seconds = (Date.now() / 1000) - seconds;
-                    const measures = {
-                        day: 24 * 60 * 60,
-                        hour: 60 * 60,
-                        minute: 60,
-                        second: 1,
-                    };
-                
-                    for (const [label, amount] of Object.entries(measures)) {
-                        if (seconds >= amount) {
-                            const howMany = Math.floor(seconds / amount);
-                            return `${howMany} ${label}${howMany > 1 ? 's' : ''}`;
-                        }
+            function getFormattedTime(seconds) {
+                seconds = (Date.now() / 1000) - seconds;
+                const measures = {
+                    day: 24 * 60 * 60,
+                    hour: 60 * 60,
+                    minute: 60,
+                    second: 1,
+                };
+            
+                for (const [label, amount] of Object.entries(measures)) {
+                    if (seconds >= amount) {
+                        const howMany = Math.floor(seconds / amount);
+                        return `${howMany} ${label}${howMany > 1 ? 's' : ''}`;
                     }
-                
-                    return 'now';
                 }
+            
+                return 'now';
+            }
         </script>
     </head>
     <body class="bg-neutral-100">
