@@ -1,7 +1,7 @@
 # HCKRNEWS
 
-Homepage
+## Homepage
 ![Homepage](screenshots/homepage.png "Homepage")
 
-Userpage
+## Userpage
 ![Userpage](screenshots/userpage.png "Userpage")
